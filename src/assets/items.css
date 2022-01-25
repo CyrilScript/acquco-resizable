@@ -60,3 +60,7 @@ li b {
   font-size: 19px;
   line-height: 14px;
 }
+
+.react-grid-layout.layout {
+  min-height: calc(100vh - 2rem) !important;
+}

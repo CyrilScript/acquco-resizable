@@ -49,11 +49,5 @@ class ExampleLayout extends React.Component<LayoutProps, LayoutState> {
   }
 }
 
-// declare global {
-//   interface Window {
-//     gridProps: any;
-//   }
-// }
 const contentDiv = document.getElementById("root");
-// const gridProps = window.gridProps || {};
 ReactDOM.render(React.createElement(ExampleLayout,  window || {}), contentDiv);

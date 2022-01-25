@@ -1,33 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-// import { Responsive, WidthProvider } from "react-grid-layout";
-// const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const ReactGridLayout = require('react-grid-layout');
 const  { Responsive, WidthProvider } = ReactGridLayout;
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-// const  { Responsive, WidthProvider } = ReactGridLayout;
 type ShowcaseLayoutProps = {
   onLayoutChange: any;
   cols?: any;
   props?: {
     onLayoutChange: (a: any, b: any) => {};
-    // onLayoutChange: any;
     onBreakpointChange: (a: any) => {};
     className: "layout";
     rowHeight: 30;
     cols: { lg: number; md: number; sm: number; xs: number; xxs: number };
-    // cols:any;
     initialLayout: () => { x: number; y: number; w: number; h: number; i: string; static: boolean }[];
   };
 };
 type ShowcaseLayoutState = {
   currentBreakpoint: string;
   compactType: any;
-  // layouts?: { lg?: { l: any }; static?: string };
-  // layouts?: ReactGridLayout.Layouts | undefined;
   layouts?:any;
   mounted: boolean;
 };

@@ -39,7 +39,7 @@ export const options = {
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
-export const groupData = [
+const data_01 = [
   {
     labels,
     datasets: [
@@ -48,10 +48,12 @@ export const groupData = [
         data: [0, 0, 0, 0, 294, 637, 59],
         borderColor: "rgb(50,54,58)",
         backgroundColor: "rgba(50,54,58)",
+        borderWidth: 2,
       },
     ],
   },
-
+];
+const data_02 = [
   {
     labels,
     datasets: [
@@ -60,35 +62,91 @@ export const groupData = [
         data: [187, 721, 949, 241, 158, 65, 648],
         borderColor: "rgb(50,54,58)",
         backgroundColor: "rgba(50,54,58)",
-      },
-    ],
-  },
-
-  {
-    labels,
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [943, 389, 385, 603, 360, 523, 169],
-        borderColor: "rgb(50,54,58)",
-        backgroundColor: "rgba(50,54,58)",
-      },
-    ],
-  },
-
-  {
-    labels,
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [50, 100, 200, 350, 300, 350, 300],
-        borderColor: "rgb(50,54,58)",
-        backgroundColor: "rgba(50,54,58)",
+        borderWidth: 2,
       },
     ],
   },
 ];
 
+const data_03 = {
+  labels,
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [50, 50, 900, 400, 500, 300, 169],
+      borderColor: "rgb(50,54,58)",
+      backgroundColor: "rgba(50,54,58)",
+      borderWidth: 2,
+    },
+  ],
+};
+
+const data_04 = {
+  labels,
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [50, 100, 200, 350, 300, 350, 300],
+      borderColor: "rgb(50,54,58)",
+      backgroundColor: "rgba(50,54,58)",
+      borderWidth: 2,
+    },
+  ],
+};
+
+// export const groupData = [
+//   {
+//     labels,
+//     datasets: [
+//       {
+//         label: "Dataset 1",
+//         data: [0, 0, 0, 0, 294, 637, 59],
+//         borderColor: "rgb(50,54,58)",
+//         backgroundColor: "rgba(50,54,58)",
+//         borderWidth: 2,
+//       },
+//     ],
+//   },
+
+//   {
+//     labels,
+//     datasets: [
+//       {
+//         label: "Dataset 1",
+//         data: [187, 721, 949, 241, 158, 65, 648],
+//         borderColor: "rgb(50,54,58)",
+//         backgroundColor: "rgba(50,54,58)",
+//         borderWidth: 2,
+//       },
+//     ],
+//   },
+
+//   {
+//     labels,
+//     datasets: [
+//       {
+//         label: "Dataset 1",
+//         data: [50, 50, 900, 400, 500, 300, 169],
+//         borderColor: "rgb(50,54,58)",
+//         backgroundColor: "rgba(50,54,58)",
+//         borderWidth: 2,
+//       },
+//     ],
+//   },
+
+//   {
+//     labels,
+//     datasets: [
+//       {
+//         label: "Dataset 1",
+//         data: [50, 100, 200, 350, 300, 350, 300],
+//         borderColor: "rgb(50,54,58)",
+//         backgroundColor: "rgba(50,54,58)",
+//         borderWidth: 2,
+//       },
+//     ],
+//   },
+// ];
 
 interface WidthHeightChartProp {
   width: number;
@@ -96,26 +154,110 @@ interface WidthHeightChartProp {
 }
 export function RightLineChart(props: WidthHeightChartProp) {
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "24%",
-        // height: "6rem !important",
-      }}
-    >
-      {groupData.map((data, i) => (
-        <Line
-          style={{
-            transform: "scale(0.5)",
-            marginTop: "2.3rem",
-          }}
-          key={i}
-          options={options}
-          data={data}
-          width={props.width / 4}
-          height={props.height}
-        />
-      ))}
+    <div className="relative overflow-scroll h-full">
+      <h6 className="relative text-base top-0.5 left-4 font-bold">Performance Metrics (last 24 hours)</h6>
+      <div className="absolute w-full h-full">
+        <div className="relative">
+          <div className="absolute flex w-full top-3">
+            <div className="flex flex-1 items-start justify-start w-full relative z-10">
+              <div className="text-sm pl-6">Latency</div>
+            </div>
+            <div className="flex flex-1 items-start justify-startw-full relative z-10">
+              <div className="text-sm pl-12">Response Time</div>
+            </div>
+            <div className="flex flex-1 items-center justify-center w-full relative z-10">
+              <div>
+                <div className="text-sm -ml-6">4xx Errors</div>
+                <div className="flex items-center">
+                  <h3 className="text-3xl font-bold text-black">93</h3>
+                  <sub className="text-red-500 pl-2 pt-2.5">&#8595; -1%</sub>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-1 items-center justify-center w-full relative z-10">
+              <div>
+                <div className="text-sm  -ml-6">5xx Errors</div>
+                <div className="flex items-center">
+                  <h3 className="text-3xl font-bold text-black">418</h3>
+                  <sub className="text-green-500 pl-2 pt-2.5">&#8593; 418%</sub>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="relative top-2 flex flex-1 space-x-3 px-3 w-full h-full">
+          <div className="bg-gray-300 bg-opacity-25 w-full h-3/4">
+            <div className="pt-8 flex flex-1 text-xs space-x-1 px-3 w-full h-full">
+              <div>
+                <div>werewr</div>
+                <div className="pt-2">dfdgfg</div>
+              </div>
+              <div>
+                <div>iktuy</div>
+                <div className="pt-2">dcvsdr</div>
+              </div>
+              <div>
+                <div>rtrbf</div>
+                <div className="pt-2">dfgdfg</div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-gray-300 bg-opacity-25 w-full h-3/4">
+            <div className="pt-8 flex flex-1 text-xs space-x-1 px-3 w-full h-full">
+              <div>
+                <div>werewr</div>
+                <div className="pt-2">dfdgfg</div>
+              </div>
+              <div>
+                <div>iktuy</div>
+                <div className="pt-2">dcvsdr</div>
+              </div>
+              <div>
+                <div>rtrbf</div>
+                <div className="pt-2">dfgdfg</div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-gray-300 bg-opacity-25 w-full h-3/4">
+            <div
+              style={{
+                display: "flex",
+                marginLeft: "-0.5rem",
+              }}
+            >
+              <Line
+                style={{
+                  transform: "scale(1,0.25)",
+                  marginTop: "1rem",
+                }}
+                options={options}
+                data={data_03}
+                width={props.width / 4}
+                height={props.height}
+              />
+            </div>
+          </div>
+          <div className="bg-gray-300 bg-opacity-25 w-full h-3/4">
+            <div
+              style={{
+                display: "flex",
+                marginLeft: "-0.5rem",
+              }}
+            >
+              <Line
+                style={{
+                  transform: "scale(1,0.25)",
+                  marginTop: "1rem",
+                }}
+                options={options}
+                data={data_04}
+                width={props.width / 4}
+                height={props.height}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

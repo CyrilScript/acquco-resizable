@@ -2,6 +2,8 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import ShowcaseLayout from "./components/ShowcaseLayout";
 import "tailwindcss/tailwind.css";
+import "@fontsource/source-sans-pro";
+
 
 type LayoutProps = {
   props?: any;

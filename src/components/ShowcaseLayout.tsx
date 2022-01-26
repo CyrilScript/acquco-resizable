@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import { LineChart, Line, BarChart, Bar, AreaChart, Area, PieChart, Pie, CartesianGrid, XAxis, YAxis } from "recharts";
-import data from "./GeneralData";
-import SortingTable from "./SortingTable";
 import { DoughnutChart } from "./DoughnutChart";
 import { LeftLineChart } from "./LeftLineChart";
 import { StackedBarChart } from "./StackedBarChart";
 import { HorizontalBarChart } from "./HorizontalBarChart";
 import { DottedLineChart } from "./DottedLineChart";
 import { RightLineChart } from "./RightLineChart";
-import  ProgressChart  from "./ProgressChart";
+import ProgressChart from "./ProgressChart";
+import DataTable from "./DataTable";
 
 const ReactGridLayout = require("react-grid-layout");
 const { Responsive, WidthProvider } = ReactGridLayout;
@@ -64,12 +62,6 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
 
   generateDOM() {
     return _.map(this.state.layouts.lg, function (l: any, i: number) {
-      // const width = parseInt(style.width, 10);
-      // const height = parseInt(style.height, 10) - 50
-
-      // const width = parseInt(style.width, 10);
-      // const height = parseInt(style.height, 10) - 50
-
       const width = l.w * 100;
       const height = l.h * 35;
 
@@ -77,61 +69,55 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         case "0":
           return (
             <div key={i} className="text ">
-              <LeftLineChart width={width} height={height} key={i}/>
-          
+              <LeftLineChart width={width} height={height} key={i} />
             </div>
           );
         case "1":
           return (
             <div key={i} className="text ">
-           <DottedLineChart/>
+              <DottedLineChart />
             </div>
           );
         case "2":
           return (
             <div key={i} className="text ">
-              <ProgressChart/>
+              <ProgressChart />
             </div>
           );
         case "3":
           return (
             <div key={i} className="text ">
-              <SortingTable />
+              <DataTable />
             </div>
           );
         case "4":
           return (
             <div key={i} className="text ">
-             <RightLineChart width={width} height={height}/>
+              <RightLineChart width={width} height={height}  />
             </div>
           );
         case "5":
           return (
             <div key={i} className="text ">
-              <HorizontalBarChart/>
+              <HorizontalBarChart />
             </div>
           );
         case "6":
           return (
             <div key={i} className="text ">
-             <StackedBarChart/>
+              <StackedBarChart />
             </div>
           );
         case "7":
           return (
             <div key={i} className="text ">
-              <DoughnutChart width={300} height={300}/>
+              <DoughnutChart width={300} height={300} />
             </div>
           );
         default:
           return (
             <div key={i} className="text ">
-              <AreaChart width={width} height={height} data={data} margin={{ left: 10, right: 10 }} key={i}>
-                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-                <XAxis dataKey="time" width={0} axisLine={false} />
-                <YAxis dataKey="value" width={0} axisLine={false} mirror />
-                <Area dataKey="value" fill="#82ca9d" stroke="#82ca9d" isAnimationActive={false} />
-              </AreaChart>
+              <ProgressChart />
             </div>
           );
       }
@@ -156,7 +142,6 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
           layouts={this.state.layouts}
           onBreakpointChange={this.onBreakpointChange}
           onLayoutChange={this.onLayoutChange}
-          // WidthProvider option
           measureBeforeMount={false}
           // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
           // and set `measureBeforeMount={true}`.

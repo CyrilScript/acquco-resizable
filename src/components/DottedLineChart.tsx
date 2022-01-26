@@ -41,12 +41,7 @@ export const data = {
 
 export function DottedLineChart() {
   return (
-    <div
-      style={{
-        // display: "flex",
-        // width: "24%",
-      }}
-    >
+    <div className="relative overflow-scroll h-full mt-0">
       <Line
         options={options}
         data={data}

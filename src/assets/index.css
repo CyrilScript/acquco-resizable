@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   background: white;
   padding: 20px;
   overflow: scroll;
-  font-family: "open sans", sans-serif;
+  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
   font-size: 1rem;
+  color: rgb(68, 68, 68);
+
 }
 #content {
   width: 100%;
@@ -30,7 +33,7 @@ body {
   box-sizing: border-box;
 }
 .react-grid-item:not(.react-grid-placeholder) {
-  background: #ccc;
+  background: #fff;
   border: 1px solid black;
 }
 .react-grid-item.resizing {
@@ -97,7 +100,33 @@ li b {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-
 .defaultSectioning{
+  position: relative;
+  left: 0;
+  
+}
+.defaultSectioning .marker{
+  width: max-content;
+  border: 1px dashed #5c5c5c;
+  height: 60px;
+  position: absolute;
+  z-index: 1;
+  top: -47px;
+  right: 90%;
 
+}
+.defaultSectioning .text{
+  font-size: 0.75rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.defaultSectioningWrapper > .defaultSectioning:last-child .text{
+  text-align: right;
+}
+.defaultSectioning .text:first-child{
+  text-align: left;
+}
+
+.defaultSectioningWrapper{
+  margin-top: 41px;
 }

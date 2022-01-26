@@ -36,13 +36,7 @@ interface WidthHeightChartProp {
 }
 export function DoughnutChart(props: WidthHeightChartProp) {
   return (
-    <div
-      style={{
-        width: "40%",
-        margin: "auto",
-        marginTop: "1.5rem",
-      }}
-    >
+    <div className="relative overflow-scroll h-full w-2/5 mx-auto mt-4 2xl:mt-0">
       <Doughnut data={data} height={props.height} />
     </div>
   );

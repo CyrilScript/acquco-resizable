@@ -62,7 +62,7 @@ export const data = {
 
 export function HorizontalBarChart() {
   return (
-    <div style={{ position: "relative", marginTop: "0" }}>
+    <div  className="relative overflow-scroll h-full mt-0">
       <Bar options={options} data={data} style={{ transform: "scale(0.9,0.5)", position: "absolute", marginTop: "-4.1rem" }} />
     </div>
   );

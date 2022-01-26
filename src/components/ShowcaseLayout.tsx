@@ -1,11 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
+import { LineChart, Line, BarChart, Bar, AreaChart, Area, PieChart, Pie, CartesianGrid, XAxis, YAxis } from "recharts";
+import data from "./GeneralData";
+import SortingTable from "./SortingTable";
+import { DoughnutChart } from "./DoughnutChart";
+import { LeftLineChart } from "./LeftLineChart";
+import { StackedBarChart } from "./StackedBarChart";
+import { HorizontalBarChart } from "./HorizontalBarChart";
+import { DottedLineChart } from "./DottedLineChart";
+
 const ReactGridLayout = require("react-grid-layout");
 const { Responsive, WidthProvider } = ReactGridLayout;
-
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
+type initialLayoutType = { x: number; y: number; w: number; h: number; i: string }[];
 type ShowcaseLayoutProps = {
   onLayoutChange: any;
   cols?: any;
@@ -15,7 +24,7 @@ type ShowcaseLayoutProps = {
     className: "layout";
     rowHeight: 30;
     cols: { lg: number; md: number; sm: number; xs: number; xxs: number };
-    initialLayout: () => { x: number; y: number; w: number; h: number; i: string; static: boolean }[];
+    initialLayout: initialLayoutType;
   };
 };
 type ShowcaseLayoutState = {
@@ -32,7 +41,7 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
     rowHeight: number;
     onLayoutChange: () => void;
     cols: { lg: number; md: number; sm: number; xs: number; xxs: number };
-    initialLayout: { x: number; y: number; w: number; h: number; i: string; static: boolean }[];
+    initialLayout: initialLayoutType;
   };
   constructor(props: any) {
     super(props);
@@ -44,9 +53,7 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
     };
 
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
-    this.onCompactTypeChange = this.onCompactTypeChange.bind(this);
     this.onLayoutChange = this.onLayoutChange.bind(this);
-    this.onNewLayout = this.onNewLayout.bind(this);
   }
 
   componentDidMount() {
@@ -55,17 +62,87 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
 
   generateDOM() {
     return _.map(this.state.layouts.lg, function (l: any, i: number) {
-      return (
-        <div key={i} className={l.static ? "static" : ""}>
-          {l.static ? (
-            <span className="text" title="This item is static and cannot be removed or resized.">
-              Static - {i}
-            </span>
-          ) : (
-            <span className="text">{i}</span>
-          )}
-        </div>
-      );
+      // const width = parseInt(style.width, 10);
+      // const height = parseInt(style.height, 10) - 50
+
+      // const width = parseInt(style.width, 10);
+      // const height = parseInt(style.height, 10) - 50
+
+      const width = l.w * 100;
+      const height = l.h * 35;
+
+      switch (l.i) {
+        case "0":
+          return (
+            <div key={i} className="text ">
+              <LeftLineChart width={width} height={height} key={i}/>
+          
+            </div>
+          );
+        case "1":
+          return (
+            <div key={i} className="text ">
+           <DottedLineChart/>
+            </div>
+          );
+        case "2":
+          return (
+            <div key={i} className="text ">
+              <BarChart width={width} height={height} data={data} margin={{ left: 10, right: 10 }} key={i}>
+                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+                <XAxis dataKey="time" width={0} axisLine={false} />
+                <YAxis dataKey="value" width={0} axisLine={false} mirror />
+                <Bar dataKey="value" fill="#82ca9d" isAnimationActive={false} />
+              </BarChart>
+            </div>
+          );
+        case "3":
+          return (
+            <div key={i} className="text ">
+              <SortingTable />
+            </div>
+          );
+        case "4":
+          return (
+            <div key={i} className="text ">
+              <BarChart width={width} height={height} data={data} margin={{ left: 10, right: 10 }} key={i}>
+                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+                <XAxis dataKey="time" width={0} axisLine={false} />
+                <YAxis dataKey="value" width={0} axisLine={false} mirror />
+                <Bar dataKey="value" fill="#82ca9d" isAnimationActive={false} />
+              </BarChart>
+            </div>
+          );
+        case "5":
+          return (
+            <div key={i} className="text ">
+              <HorizontalBarChart/>
+            </div>
+          );
+        case "6":
+          return (
+            <div key={i} className="text ">
+             <StackedBarChart/>
+            </div>
+          );
+        case "7":
+          return (
+            <div key={i} className="text ">
+              <DoughnutChart width={300} height={300}/>
+            </div>
+          );
+        default:
+          return (
+            <div key={i} className="text ">
+              <AreaChart width={width} height={height} data={data} margin={{ left: 10, right: 10 }} key={i}>
+                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+                <XAxis dataKey="time" width={0} axisLine={false} />
+                <YAxis dataKey="value" width={0} axisLine={false} mirror />
+                <Area dataKey="value" fill="#82ca9d" stroke="#82ca9d" isAnimationActive={false} />
+              </AreaChart>
+            </div>
+          );
+      }
     });
   }
 
@@ -75,31 +152,13 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
     });
   }
 
-  onCompactTypeChange() {
-    const { compactType: oldCompactType } = this.state;
-    const compactType = oldCompactType === "horizontal" ? "vertical" : oldCompactType === "vertical" ? null : "horizontal";
-    this.setState({ compactType });
-  }
-
   onLayoutChange(layout: any, layouts: any) {
     this.props.onLayoutChange(layout, layouts);
-  }
-
-  onNewLayout() {
-    this.setState({
-      layouts: { lg: generateLayout() },
-    });
   }
 
   render() {
     return (
       <div>
-        <div>
-          Current Breakpoint: {this.state.currentBreakpoint} ({this.props.cols[this.state.currentBreakpoint]} columns)
-        </div>
-        <div>Compaction type: {_.capitalize(this.state.compactType) || "No Compaction"}</div>
-        <button onClick={this.onNewLayout}>Generate New Layout</button>
-        <button onClick={this.onCompactTypeChange}>Change Compaction Type</button>
         <ResponsiveReactGridLayout
           {...this.props}
           layouts={this.state.layouts}
@@ -129,33 +188,14 @@ ShowcaseLayout.defaultProps = {
   rowHeight: 30,
   onLayoutChange: function () {},
   cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-  initialLayout: generateLayout(),
+  initialLayout: [
+    { x: 0, y: 0, w: 6, h: 4, i: "0" },
+    { x: 0, y: 4, w: 3, h: 4, i: "1" },
+    { x: 3, y: 4, w: 3, h: 4, i: "2" },
+    { x: 6, y: 4, w: 6, h: 9, i: "3" },
+    { x: 6, y: 0, w: 6, h: 4, i: "4" },
+    { x: 0, y: 8, w: 6, h: 5, i: "5" },
+    { x: 0, y: 13, w: 8, h: 6, i: "6" },
+    { x: 8, y: 13, w: 4, h: 6, i: "7" },
+  ],
 };
-
-function generateLayout() {
-  return _.map(_.range(0, 8), function (item: any, i: number) {
-    var y = Math.ceil(Math.random() * 4) + 1;
-    return {
-      x: (_.random(0, 5) * 2) % 12,
-      y: Math.floor(i / 6) * y,
-      w: 4,
-      h: y,
-      // i: i.toString(),
-      i: item.toString(),
-      static: false,
-    };
-  });
-  
-  // return [
-  //   { x: 0, y: 0, w: 6, h: 4, i: "0", static: false },
-  //   { x: 0, y: 4, w: 3, h: 4, i: "1", static: false },
-  //   { x: 3, y: 4, w: 3, h: 4, i: "2", static: false },
-  //   { x: 6, y: 4, w: 6, h: 9, i: "3", static: false },
-  //   { x: 6, y: 0, w: 6, h: 4, i: "4", static: false },
-  //   { x: 0, y: 8, w: 6, h: 5, i: "5", static: false },
-  //   { x: 0, y: 13, w: 8, h: 5, i: "6", static: false },
-  //   { x: 8, y: 13, w: 4, h: 5, i: "7", static: false },
-  // ];
-}
-
-console.log(generateLayout());

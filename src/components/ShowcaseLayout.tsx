@@ -9,6 +9,8 @@ import { LeftLineChart } from "./LeftLineChart";
 import { StackedBarChart } from "./StackedBarChart";
 import { HorizontalBarChart } from "./HorizontalBarChart";
 import { DottedLineChart } from "./DottedLineChart";
+import { RightLineChart } from "./RightLineChart";
+import  SingleHorizontalChart  from "./SingleHorizontalChart";
 
 const ReactGridLayout = require("react-grid-layout");
 const { Responsive, WidthProvider } = ReactGridLayout;
@@ -88,12 +90,7 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         case "2":
           return (
             <div key={i} className="text ">
-              <BarChart width={width} height={height} data={data} margin={{ left: 10, right: 10 }} key={i}>
-                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-                <XAxis dataKey="time" width={0} axisLine={false} />
-                <YAxis dataKey="value" width={0} axisLine={false} mirror />
-                <Bar dataKey="value" fill="#82ca9d" isAnimationActive={false} />
-              </BarChart>
+              <SingleHorizontalChart/>
             </div>
           );
         case "3":
@@ -105,12 +102,7 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         case "4":
           return (
             <div key={i} className="text ">
-              <BarChart width={width} height={height} data={data} margin={{ left: 10, right: 10 }} key={i}>
-                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-                <XAxis dataKey="time" width={0} axisLine={false} />
-                <YAxis dataKey="value" width={0} axisLine={false} mirror />
-                <Bar dataKey="value" fill="#82ca9d" isAnimationActive={false} />
-              </BarChart>
+             <RightLineChart width={width} height={height}/>
             </div>
           );
         case "5":

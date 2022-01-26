@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import "./assets/styles.css";
-import "./assets/items.css";
+import "./assets/index.css";
 
 const contentDiv = document.getElementById("root");
 

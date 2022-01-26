@@ -1,6 +1,7 @@
 import React from "react";
 // import ReactDOM from "react-dom";
 import ShowcaseLayout from "./components/ShowcaseLayout";
+import "tailwindcss/tailwind.css";
 
 type LayoutProps = {
   props?: any;

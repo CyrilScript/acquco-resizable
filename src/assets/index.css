@@ -1,7 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   background: white;
   padding: 20px;
   overflow: scroll;
+  font-family: "open sans", sans-serif;
+  font-size: 1rem;
 }
 #content {
   width: 100%;
@@ -64,24 +70,6 @@ li b {
 .react-grid-layout.layout {
   min-height: calc(100vh - 2rem) !important;
 }
-.lineChartCard {
-  display: flex;
-  flex-wrap: nowrap;
-  margin-top: 4.5rem;
-}
-@media screen and (min-width: 1053px) {
-  .straightLineChart canvas {
-    width: calc(100vw / 9) !important;
-  }
-}
 
-@media screen and (max-width: 1053px) {
-  .straightLineChart canvas {
-    width: calc(100vw / 5) !important;
-  }
-}
 
-.recharts-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-}
+

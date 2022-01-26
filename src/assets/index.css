@@ -73,3 +73,27 @@ li b {
 
 
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 1px 3px;
+  font-size: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 41px;
+  right: 0;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

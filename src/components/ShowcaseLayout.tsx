@@ -10,7 +10,7 @@ import { StackedBarChart } from "./StackedBarChart";
 import { HorizontalBarChart } from "./HorizontalBarChart";
 import { DottedLineChart } from "./DottedLineChart";
 import { RightLineChart } from "./RightLineChart";
-import  SingleHorizontalChart  from "./SingleHorizontalChart";
+import  ProgressChart  from "./ProgressChart";
 
 const ReactGridLayout = require("react-grid-layout");
 const { Responsive, WidthProvider } = ReactGridLayout;
@@ -90,7 +90,7 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         case "2":
           return (
             <div key={i} className="text ">
-              <SingleHorizontalChart/>
+              <ProgressChart/>
             </div>
           );
         case "3":

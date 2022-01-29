@@ -27,14 +27,14 @@ export const data = {
     {
       label: "Dataset 1",
       data: [603, 666, 673, 200],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      borderColor: "rgb(242,150,225)",
+      backgroundColor: "rgb(242,150,225)",
     },
     {
       label: "Dataset 2",
       data: [100, 100, 200, 330],
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      borderColor: "rgb(98,132,247)",
+      backgroundColor: "rgb(98,132,247)",
     },
   ],
 };
@@ -42,6 +42,8 @@ export const data = {
 export function DottedLineChart() {
   return (
     <div className="relative overflow-scroll h-full mt-0">
+      <p className="absolute text-sm text-black font-bold whitespace-nowrap left-0 pl-4 pb-1">Unique Visitors (by hour)</p>
+
       <Line
         options={options}
         data={data}

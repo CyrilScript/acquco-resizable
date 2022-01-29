@@ -93,7 +93,7 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         case "4":
           return (
             <div key={i} className="text ">
-              <RightLineChart width={width} height={height}  />
+              <RightLineChart width={width} height={height} />
             </div>
           );
         case "5":
@@ -111,6 +111,8 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         case "7":
           return (
             <div key={i} className="text ">
+              <p className="absolute font-medium text-black whitespace-nowrap left-0 pl-4 pt-2">Payment Health (last 24hours) </p>
+
               <DoughnutChart width={300} height={300} />
             </div>
           );

@@ -100,7 +100,7 @@ interface WidthHeightChartProp {
 export function LeftLineChart(props: WidthHeightChartProp) {
   return (
     <div className="relative  overflow-scroll  h-full">
-      <h6 className="relative text-base top-0.5 left-4 font-bold">Application Incident Management (last 24 hours)</h6>
+      <h6 className="relative text-black top-0.5 left-4 font-medium">Application Incident Management (last 24 hours)</h6>
       <div className="absolute w-full">
         <div className="relative">
           <div className="absolute flex w-full top-3">
@@ -135,7 +135,7 @@ export function LeftLineChart(props: WidthHeightChartProp) {
               <div>
                 <div className="text-sm">Resolved</div>
                 <div className="flex items-center">
-                  <h3 className="text-3xl font-bold text-black">1,250</h3>
+                  <h3 className="text-3xl font-bold text-black">1,520</h3>
                   <sub className="text-green-500 pl-2 pt-2.5">&#8593; 281%</sub>
                 </div>
               </div>

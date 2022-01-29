@@ -8,7 +8,9 @@ export default function ProgressChart() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col justify-content-center">
+    <div className="relative overflow-scroll w-full h-full flex flex-col justify-content-center">
+      <p className="absolute text-sm text-black font-bold whitespace-nowrap left-0 pl-4 pb-1">Account Management and Customer Logins (by hour)</p>
+
       <div className="w-5/6 m-auto flex  py-3 text-gray-500 text-sm font-bold font-mono leading-6 border-x-2 border-x-gray-500 border-dashed">
         {progressItem.map((data, index) => (
           <div

@@ -33,6 +33,9 @@ export default class App extends React.Component<LayoutProps, LayoutState> {
   render() {
     return (
       <div>
+        <header className="text-3xl text-black font-bold p-3 pt-0">
+          Monitoring and Performance
+        </header>
         <ShowcaseLayout onLayoutChange={this.onLayoutChange} />
       </div>
     );

@@ -5,14 +5,14 @@
 - Resizeable Components
 - Draggbale
 - Customizable
-- Ability to add New Chart
+- Ability to Add New Chart
 - Ability to Delete Chart
 
 
 ## Improvements
 
-# Due to time comstraints styling was mainly done for a 1440px screen size
-- The best screen size is at 1440px, further specific screen size styling can be made to improve the user interface for each screen size.
+### Due to time comstraints styling was mainly done for a 1440px screen size
+- The best screen size is at `1440px`, further specific screen size styling can be made to improve the user interface for each screen size.
 - Only functional components can be used in the future too. 
 
 

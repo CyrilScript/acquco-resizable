@@ -14,6 +14,7 @@
 - React-grid-layout
 - Mobx
 - Material UI
+- React-chartjs-2
 
 
 
@@ -22,6 +23,7 @@
 - #### Due to time constraints styling was mainly done for a `1440px` screen size
 - Further specific screen size styling can be made to improve the user interface for each screen size.
 - Only functional components can be used in the future too. 
+
 
 
 ## Available Scripts

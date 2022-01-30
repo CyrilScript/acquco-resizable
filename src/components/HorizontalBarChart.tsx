@@ -1,6 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import useWindowDimensions from "../hooks/useWindowDimesions";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -71,10 +72,11 @@ export const data = {
 };
 
 export function HorizontalBarChart() {
+  const {width} = useWindowDimensions();
   return (
     <div className="relative overflow-scroll h-full mt-0">
       <p className="absolute text-sm font-bold whitespace-nowrap left-0 pl-4 pb-1">Content Distribution Network Health</p>
-      <Bar options={options} data={data} style={{ transform: "scale(0.9,0.5)", position: "absolute", marginTop: "-4.1rem" }} />
+      <Bar options={options} data={data} style={width>640?{ transform: "scale(0.9,0.5)", position: "absolute", marginTop: "-4.1rem" }:{transform: "scale(0.9,0.5)", position: "absolute"}} />
     </div>
   );
 }

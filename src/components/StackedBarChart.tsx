@@ -1,6 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import useWindowDimensions from "../hooks/useWindowDimesions";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -63,11 +64,12 @@ export const data = {
 };
 
 export function StackedBarChart() {
+  const {width} = useWindowDimensions();
   return (
     <div className="relative overflow-scroll h-full mt-0">
       <div className="absolute bg-white text-sm text-black z-10 font-bold whitespace-nowrap left-0 px-4 pb-4">eCommerce Infrastructure CPU usage</div>
 
-      <Bar options={options} data={data} style={{ transform: "scale(0.9,0.45)", position: "absolute", marginTop: "-7rem" }} />
+      <Bar options={options} data={data} style={width> 640?{ transform: "scale(0.9,0.45)", position: "absolute", marginTop: "-7rem" }:{ transform: "scale(0.9,0.45)", position: "absolute" }} />
     </div>
   );
 }

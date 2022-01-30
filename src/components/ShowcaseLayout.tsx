@@ -1,6 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
-import _ from "lodash";
+import React, { Component } from "react";
 import { DoughnutChart } from "./DoughnutChart";
 import { LeftLineChart } from "./LeftLineChart";
 import { StackedBarChart } from "./StackedBarChart";
@@ -9,33 +7,19 @@ import { DottedLineChart } from "./DottedLineChart";
 import { RightLineChart } from "./RightLineChart";
 import ProgressChart from "./ProgressChart";
 import DataTable from "./DataTable";
+import { observer } from "mobx-react";
+import store from "../store";
+import * as mobx from "mobx";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { IconButton } from "@material-ui/core";
+import { Responsive, WidthProvider } from "react-grid-layout";
+import { initialLayoutType, ShowcaseLayoutProps, ShowcaseLayoutState } from "../types";
 
-const ReactGridLayout = require("react-grid-layout");
-const { Responsive, WidthProvider } = ReactGridLayout;
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-type initialLayoutType = { x: number; y: number; w: number; h: number; i: string }[];
-type ShowcaseLayoutProps = {
-  onLayoutChange: any;
-  cols?: any;
-  props?: {
-    onLayoutChange: (a: any, b: any) => {};
-    onBreakpointChange: (a: any) => {};
-    className: "layout";
-    rowHeight: 30;
-    cols: { lg: number; md: number; sm: number; xs: number; xxs: number };
-    initialLayout: initialLayoutType;
-  };
-};
-type ShowcaseLayoutState = {
-  currentBreakpoint: string;
-  compactType: any;
-  layouts?: any;
-  mounted: boolean;
-};
 
-export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps, ShowcaseLayoutState> {
-  static propTypes: { onLayoutChange: PropTypes.Validator<(...args: any[]) => any> };
+
+class ShowcaseLayout extends Component<ShowcaseLayoutProps, ShowcaseLayoutState> {
   static defaultProps: {
     className: string;
     rowHeight: number;
@@ -43,13 +27,14 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
     cols: { lg: number; md: number; sm: number; xs: number; xxs: number };
     initialLayout: initialLayoutType;
   };
+
   constructor(props: any) {
     super(props);
     this.state = {
       currentBreakpoint: "lg",
       compactType: "vertical",
       mounted: false,
-      layouts: { lg: props.initialLayout, static: "" },
+      layouts: { lg: mobx.toJS(store.charts), static: "" },
     };
 
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
@@ -57,73 +42,152 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
   }
 
   componentDidMount() {
-    this.setState({ mounted: true });
+    this.setState({
+      ...this.state,
+      layouts: { ...this.state.layouts, lg: mobx.toJS(store.charts) },
+      mounted: true,
+    });
+  }
+
+
+  handleDelete(id: number) {
+    store.removeChart(id.toString());
+
+    this.setState({
+      ...this.state,
+      layouts: { ...this.state.layouts, lg: mobx.toJS(store.charts) },
+      mounted: true,
+    });
   }
 
   generateDOM() {
-    return _.map(this.state.layouts.lg, function (l: any, i: number) {
+
+    return mobx.toJS(store.charts).map((l: any, i: number) => {
       const width = l.w * 100;
       const height = l.h * 35;
 
-      switch (l.i) {
-        case "0":
+      switch (l.type) {
+        case "left-line":
           return (
-            <div key={i} className="text ">
-              <LeftLineChart width={width} height={height} key={i} />
+            <div key={i} className="text">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
+              <LeftLineChart width={width} height={height} />
             </div>
           );
-        case "1":
+        case "dotted-line":
           return (
             <div key={i} className="text ">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <DottedLineChart />
             </div>
           );
-        case "2":
+        case "progress":
           return (
             <div key={i} className="text ">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <ProgressChart />
             </div>
           );
-        case "3":
+        case "table":
           return (
             <div key={i} className="text ">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <DataTable />
             </div>
           );
-        case "4":
+        case "right-line":
           return (
             <div key={i} className="text ">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <RightLineChart width={width} height={height} />
             </div>
           );
-        case "5":
+        case "horizontal-bar":
           return (
             <div key={i} className="text ">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <HorizontalBarChart />
             </div>
           );
-        case "6":
+        case "stacked-bar":
           return (
             <div key={i} className="text ">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <StackedBarChart />
             </div>
           );
-        case "7":
+        case "doughnut":
           return (
-            <div key={i} className="text ">
+            <div key={i} className="text overflow-scroll">
               <p className="absolute font-medium text-black whitespace-nowrap left-0 pl-4 pt-2">Payment Health (last 24hours) </p>
-
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <DoughnutChart width={300} height={300} />
             </div>
           );
         default:
           return (
-            <div key={i} className="text ">
+            <div key={i} className="text">
+              <IconButton
+                className="float-right top-0 z-20 transform scale-75"
+                style={{ position: "absolute", right: 0, backgroundColor: "white" }}
+                onClick={() => this.handleDelete(l.i)}
+              >
+                <DeleteIcon className="scale-110" />
+              </IconButton>
               <ProgressChart />
             </div>
           );
       }
-    });
+    })
+
   }
 
   onBreakpointChange(breakpoint: any) {
@@ -142,13 +206,13 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
         <ResponsiveReactGridLayout
           {...this.props}
           layouts={this.state.layouts}
-          onBreakpointChange={this.onBreakpointChange}
-          onLayoutChange={this.onLayoutChange}
-          measureBeforeMount={false}
-          // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
-          // and set `measureBeforeMount={true}`.
-          useCSSTransforms={this.state.mounted}
-          compactType={this.state.compactType}
+          // onBreakpointChange={this.onBreakpointChange}
+          // onLayoutChange={this.onLayoutChange}
+          // measureBeforeMount={false}
+          // // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
+          // // and set `measureBeforeMount={true}`.
+          // useCSSTransforms={this.state.mounted}
+          // compactType={this.state.compactType}
           preventCollision={!this.state.compactType}
         >
           {this.generateDOM()}
@@ -158,23 +222,12 @@ export default class ShowcaseLayout extends React.Component<ShowcaseLayoutProps,
   }
 }
 
-ShowcaseLayout.propTypes = {
-  onLayoutChange: PropTypes.func.isRequired,
-};
-
 ShowcaseLayout.defaultProps = {
   className: "layout",
   rowHeight: 30,
   onLayoutChange: function () {},
   cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-  initialLayout: [
-    { x: 0, y: 0, w: 6, h: 4, i: "0" },
-    { x: 0, y: 4, w: 3, h: 4, i: "1" },
-    { x: 3, y: 4, w: 3, h: 4, i: "2" },
-    { x: 6, y: 4, w: 6, h: 9, i: "3" },
-    { x: 6, y: 0, w: 6, h: 4, i: "4" },
-    { x: 0, y: 8, w: 6, h: 5, i: "5" },
-    { x: 0, y: 13, w: 8, h: 6, i: "6" },
-    { x: 8, y: 13, w: 4, h: 6, i: "7" },
-  ],
+  initialLayout: mobx.toJS(store.charts),
 };
+
+export default observer(ShowcaseLayout);

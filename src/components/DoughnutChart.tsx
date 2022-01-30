@@ -1,6 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import { WidthHeightChartProp } from "../interfaces";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 export const data = {
@@ -31,10 +32,6 @@ export const data = {
   },
 };
 
-interface WidthHeightChartProp {
-  width: number;
-  height: number;
-}
 export function DoughnutChart(props: WidthHeightChartProp) {
   return (
     <div className="relative overflow-scroll">

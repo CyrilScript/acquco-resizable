@@ -94,60 +94,6 @@ const data_04 = {
   ],
 };
 
-// export const groupData = [
-//   {
-//     labels,
-//     datasets: [
-//       {
-//         label: "Dataset 1",
-//         data: [0, 0, 0, 0, 294, 637, 59],
-//         borderColor: "rgb(50,54,58)",
-//         backgroundColor: "rgba(50,54,58)",
-//         borderWidth: 2,
-//       },
-//     ],
-//   },
-
-//   {
-//     labels,
-//     datasets: [
-//       {
-//         label: "Dataset 1",
-//         data: [187, 721, 949, 241, 158, 65, 648],
-//         borderColor: "rgb(50,54,58)",
-//         backgroundColor: "rgba(50,54,58)",
-//         borderWidth: 2,
-//       },
-//     ],
-//   },
-
-//   {
-//     labels,
-//     datasets: [
-//       {
-//         label: "Dataset 1",
-//         data: [50, 50, 900, 400, 500, 300, 169],
-//         borderColor: "rgb(50,54,58)",
-//         backgroundColor: "rgba(50,54,58)",
-//         borderWidth: 2,
-//       },
-//     ],
-//   },
-
-//   {
-//     labels,
-//     datasets: [
-//       {
-//         label: "Dataset 1",
-//         data: [50, 100, 200, 350, 300, 350, 300],
-//         borderColor: "rgb(50,54,58)",
-//         backgroundColor: "rgba(50,54,58)",
-//         borderWidth: 2,
-//       },
-//     ],
-//   },
-// ];
-
 interface WidthHeightChartProp {
   width: number;
   height: number;
@@ -162,27 +108,7 @@ export function RightLineChart(props: WidthHeightChartProp) {
             <div className="flex flex-1 items-start justify-start w-full relative z-10">
               <div className="text-sm pl-6">Latency</div>
             </div>
-            {/* <div className="flex flex-1 items-start justify-startw-full relative z-10">
-              <div className="text-sm pl-12">Response Time</div>
-            </div> */}
-            {/* <div className="flex flex-1 items-center justify-center w-full relative z-10">
-              <div>
-                <div className="text-sm -ml-6">4xx Errors</div>
-                <div className="flex items-center">
-                  <h3 className="text-3xl font-bold text-black">93</h3>
-                  <sub className="text-red-500 pl-2 pt-2.5">&#8595; -1%</sub>
-                </div>
-              </div>
-            </div> */}
-            {/* <div className="flex flex-1 items-center justify-center w-full relative z-10">
-              <div>
-                <div className="text-sm  -ml-6">5xx Errors</div>
-                <div className="flex items-center">
-                  <h3 className="text-3xl font-bold text-black">418</h3>
-                  <sub className="text-green-500 pl-2 pt-2.5">&#8593; 418%</sub>
-                </div>
-              </div>
-            </div> */}
+     
           </div>
         </div>
         <div className="relative top-2 flex flex-1 space-x-3 px-3 w-full h-full">
@@ -214,8 +140,6 @@ export function RightLineChart(props: WidthHeightChartProp) {
                     }}
                     options={options}
                     data={data_03}
-                    // width={props.width / 4}
-                    // height={props.height}
                   />
                 </div>
                 <div className="pt-2">
@@ -228,7 +152,6 @@ export function RightLineChart(props: WidthHeightChartProp) {
                     }}
                     options={options}
                     data={data_03}
-                    // width={props.width / 4}
                   />
                 </div>
               </div>
@@ -263,8 +186,6 @@ export function RightLineChart(props: WidthHeightChartProp) {
                     }}
                     options={options}
                     data={data_03}
-                    // width={props.width / 4}
-                    // height={props.height}
                   />
                 </div>
                 <div className="pt-2">
@@ -277,7 +198,6 @@ export function RightLineChart(props: WidthHeightChartProp) {
                     }}
                     options={options}
                     data={data_03}
-                    // width={props.width / 4}
                   />
                 </div>
               </div>
@@ -302,7 +222,6 @@ export function RightLineChart(props: WidthHeightChartProp) {
               <Line
                 style={{
                   transform: "scale(1,0.25)",
-                  // marginTop: "1rem",
                   position: "relative",
                   top: "-2.4rem",
                 }}
@@ -332,7 +251,6 @@ export function RightLineChart(props: WidthHeightChartProp) {
               <Line
                 style={{
                   transform: "scale(1,0.25)",
-                  // marginTop: "-1rem",
                   position: "relative",
                   top: "-2.4rem",
                 }}

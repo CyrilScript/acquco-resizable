@@ -1,6 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { WidthHeightChartProp } from "../interfaces";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -93,10 +94,6 @@ export const groupData = [
   },
 ];
 
-interface WidthHeightChartProp {
-  width: number;
-  height: number;
-}
 export function LeftLineChart(props: WidthHeightChartProp) {
   return (
     <div className="relative  overflow-scroll  h-full">

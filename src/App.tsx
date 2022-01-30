@@ -1,25 +1,11 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import ShowcaseLayout from "./components/ShowcaseLayout";
 import "tailwindcss/tailwind.css";
 import "@fontsource/source-sans-pro";
+import ModalButtonShow from "./components/ModalButtonShow";
 
-
-type LayoutProps = {
-  props?: any;
-};
-type LayoutState = {
-  layout: {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-    i: JSX.Element;
-    static: boolean;
-  }[];
-};
-
-export default class App extends React.Component<LayoutProps, LayoutState> {
+export default class App extends React.Component{
+  
   constructor(props?: any) {
     super(props);
     this.state = { layout: [] };
@@ -33,13 +19,15 @@ export default class App extends React.Component<LayoutProps, LayoutState> {
   render() {
     return (
       <div>
-        <header className="text-3xl text-black font-bold p-3 pt-0">
-          Monitoring and Performance
+        <header>
+          <div className="flex items-center justify-between">
+            <div className="text-3xl text-black font-bold p-3 pt-0">Monitoring and Performance</div>
+            <ModalButtonShow />
+          </div>
         </header>
+        
         <ShowcaseLayout onLayoutChange={this.onLayoutChange} />
       </div>
     );
   }
 }
-
-

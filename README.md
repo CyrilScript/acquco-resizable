@@ -19,8 +19,8 @@
 
 ## Improvements
 
-### Due to time constraints styling was mainly done for a 1440px screen size
-- The best screen size is at `1440px`, further specific screen size styling can be made to improve the user interface for each screen size.
+- #### Due to time constraints styling was mainly done for a 1440px screen size
+- Further specific screen size styling can be made to improve the user interface for each screen size.
 - Only functional components can be used in the future too. 
 
 

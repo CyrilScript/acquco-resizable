@@ -66,7 +66,7 @@ function ModalButtonShow() {
 
   return (
     <div>
-      <button className="bg-black text-base px-3 py-2 mr-2 rounded-lg text-white" onClick={handleOpen}>
+      <button className="bg-black text-xs sm:text-base px-3 py-2 mr-2 rounded-lg text-white" onClick={handleOpen}>
         Add Chart
       </button>
 

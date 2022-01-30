@@ -21,7 +21,7 @@ export default class App extends React.Component{
       <div>
         <header>
           <div className="flex items-center justify-between">
-            <div className="text-3xl text-black font-bold p-3 pt-0">Monitoring and Performance</div>
+            <div className="text-base lg:text-3xl text-black font-bold p-3 pt-0">Monitoring and Performance</div>
             <ModalButtonShow />
           </div>
         </header>

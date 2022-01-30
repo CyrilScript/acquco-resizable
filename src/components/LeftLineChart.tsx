@@ -2,6 +2,7 @@ import React from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { WidthHeightChartProp } from "../interfaces";
+import useWindowDimensions from "../hooks/useWindowDimesions";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -95,6 +96,7 @@ export const groupData = [
 ];
 
 export function LeftLineChart(props: WidthHeightChartProp) {
+  const {width} = useWindowDimensions()
   return (
     <div className="relative  overflow-scroll  h-full">
       <h6 className="relative text-black top-0.5 left-4 font-medium">Application Incident Management (last 24 hours)</h6>
@@ -148,9 +150,12 @@ export function LeftLineChart(props: WidthHeightChartProp) {
       >
         {groupData.map((data, i) => (
           <Line
-            style={{
+            style={width>600?{
               transform: "scale(1,0.25)",
               marginTop: "1.5rem",
+            }:{
+              transform: "scale(1,0.25)",
+              marginTop: "3.3rem",
             }}
             key={i}
             options={options}

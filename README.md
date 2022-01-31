@@ -16,6 +16,9 @@
 - Material UI
 - React-chartjs-2
 
+## Demo
+- [Demo](http://resizeable.netlify.app/) 
+
 
 
 ## Improvements

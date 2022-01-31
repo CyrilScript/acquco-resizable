@@ -5,8 +5,6 @@
 - Resizeable Components
 - Draggable
 - Customizable
-- Ability to Add New Chart
-- Ability to Delete Chart
 
 ## Tools
 - React 
